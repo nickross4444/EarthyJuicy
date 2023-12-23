@@ -7,49 +7,22 @@
     background-image: url("https://preview.redd.it/bm8hudyl1sj31.png?auto=webp&s=ba99b1600971de7e07ed55069c623462b32fa8b0");
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
   }
+    #jsonDisplay {
+            font-family: 'cursive'; /* Set the font family to a curly font */
+            font-size: 2em; /* Set the font size to be large */
+            color: #ff69b4; /* Set the text color to pink */
+            text-align: center; /* Center-align the text */
+        }
 </style>
 </head>
 <body>
-  <p id="day-of-year"></p>
-
-  <script>
-    //string pathToJson = "https://nickross4444.github.io/EarthyJuicy/ContentItems.json"
-    const today = new Date();
-    const dayOfYear = today.getDate();
-     
-    document.getElementById("day-of-year").textContent = `Today is the ${dayOfYear} day of the year.`;
-  </script>
-
-    <div id="jsonDisplay"></div>
-
-<script>
-    // Fetch JSON data from the provided URL
-    //fetch('https://nickross4444.github.io/EarthyJuicy/ContentItems.json')
-    fetch('ContentItems.json')
-        .then(response => response.json())
-        .then(data => {
-            // Get the current day of the month
-            const currentDate = new Date();
-            const dayOfMonth = currentDate.getDate();
-
-            // Check if the day of the month is present in the JSON data
-            if (data.hasOwnProperty(dayOfMonth)) {
-                // Display the value corresponding to the day of the month
-                document.getElementById('jsonDisplay').innerText = data[dayOfMonth].item;
-            } else {
-                // If the day of the month is not found, display a message
-                document.getElementById('jsonDisplay').innerText = 'No data available for the current day of the month.';
-            }
-        })
-        .catch(error => {
-            // Display an error message if fetching fails
-            console.error('Error fetching JSON:', error);
-            document.getElementById('jsonDisplay').innerText = 'Error fetching JSON data.';
-        });
-</script>
-
-<div id="jsonDisplay2"></div>
+<div id="jsonDisplay"></div>
 
 <script>
     // Fetch JSON data from the provided URL
@@ -67,10 +40,10 @@
             // Check if an item was found
             if (selectedItem) {
                 // Display the item's text
-                document.getElementById('jsonDisplay2').innerText = selectedItem.item;
+                document.getElementById('jsonDisplay').innerText = selectedItem.item;
             } else {
                 // If no item was found, display a default message
-                document.getElementById('jsonDisplay2').innerText = 'No data available for the current day of the month.';
+                document.getElementById('jsonDisplay').innerText = 'No data available for the current day of the month.';
             }
         })
         .catch(error => {
