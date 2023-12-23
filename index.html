@@ -18,9 +18,13 @@
     margin: 0;
   }
     text-container {
-            text-align: center; /* Center-align the text */
-        }
-    #jsonDisplay,loveText {
+        text-align: center; /* Center-align the text */
+        position: absolute; /* Position the text absolutely */
+        z-index: 1; /* Ensure the text is on top */
+        width: 100%; /* Make the text container full width */    
+    }
+    #jsonDisplay,
+    #loveText {
             font-family: 'cursive', cursive, sans-serif; /* Fallback to a generic cursive font or serif*/
             font-size: 3em; /* Set the font size to be large */
             color: #ff69b4; /* Set the text color to pink */
@@ -32,6 +36,14 @@
 <div class="text-container" id="loveText">I love...</div>
 <div class="text-container" id="jsonDisplay"></div>
 <script>
+    // Array of background image URLs
+    const backgroundUrls = [
+        "url('url_for_day_0.jpg')",
+        "url('url_for_day_1.jpg')",
+        "url('url_for_day_2.jpg')",
+        // Add more URLs as needed
+    ];
+    // Calculate the index based on the modulus of the number of backgrounds
     // Fetch JSON data from the provided URL
     //fetch('https://nickross4444.github.io/EarthyJuicy/ContentItems.json')
     fetch('ContentItems.json')
@@ -44,10 +56,14 @@
             // Find the item with the corresponding index for the current day
             const selectedItem = data.find(entry => entry.index === dayOfMonth);
 
+            const backgroundIndex = dayOfMonth % backgroundUrls.length;
             // Check if an item was found
             if (selectedItem) {
                 // Display the item's text
                 document.getElementById('jsonDisplay').innerText = selectedItem.item;
+                // Update the background image URL based on the current day
+                document.body.style.backgroundImage = backgroundUrls[backgroundIndex];
+                
             } else {
                 // If no item was found, display a default message
                 document.getElementById('jsonDisplay').innerText = 'No data available for the current day of the month.';
