@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day of the Year</title>
+<style>
+  body {
+    background-image: url("https://preview.redd.it/bm8hudyl1sj31.png?auto=webp&s=ba99b1600971de7e07ed55069c623462b32fa8b0");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+</head>
+<body>
+  <p id="day-of-year"></p>
+
+  <script>
+    const today = new Date();
+    const dayOfYear = today.getDay() + 1; // Adjust for 0-based indexing
+    document.getElementById("day-of-year").textContent = `Today is the ${dayOfYear} day of the year.`;
+  </script>
+</body>
+</html>
