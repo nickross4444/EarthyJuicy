@@ -14,9 +14,38 @@
   <p id="day-of-year"></p>
 
   <script>
+    //string pathToJson = "https://nickross4444.github.io/EarthyJuicy/ContentItems.json"
     const today = new Date();
-    const dayOfYear = today.getDay() + 1; // Adjust for 0-based indexing
+    const dayOfYear = today.getDate();
+     
     document.getElementById("day-of-year").textContent = `Today is the ${dayOfYear} day of the year.`;
   </script>
+
+    <div id="jsonDisplay"></div>
+
+<script>
+    // Fetch JSON data from the provided URL
+    fetch('https://nickross4444.github.io/EarthyJuicy/ContentItems.json')
+        .then(response => response.json())
+        .then(data => {
+            // Get the current day of the month
+            const currentDate = new Date();
+            const dayOfMonth = currentDate.getDate();
+
+            // Check if the day of the month is present in the JSON data
+            if (data.hasOwnProperty(dayOfMonth)) {
+                // Display the value corresponding to the day of the month
+                document.getElementById('jsonDisplay').innerText = data[dayOfMonth];
+            } else {
+                // If the day of the month is not found, display a message
+                document.getElementById('jsonDisplay').innerText = 'No data available for the current day of the month.';
+            }
+        })
+        .catch(error => {
+            // Display an error message if fetching fails
+            console.error('Error fetching JSON:', error);
+            document.getElementById('jsonDisplay').innerText = 'Error fetching JSON data.';
+        });
+</script>
 </body>
 </html>
