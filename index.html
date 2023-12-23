@@ -36,7 +36,7 @@
             // Check if the day of the month is present in the JSON data
             if (data.hasOwnProperty(dayOfMonth)) {
                 // Display the value corresponding to the day of the month
-                document.getElementById('jsonDisplay').innerText = data[dayOfMonth];
+                document.getElementById('jsonDisplay').innerText = data[dayOfMonth].item;
             } else {
                 // If the day of the month is not found, display a message
                 document.getElementById('jsonDisplay').innerText = 'No data available for the current day of the month.';
@@ -46,6 +46,37 @@
             // Display an error message if fetching fails
             console.error('Error fetching JSON:', error);
             document.getElementById('jsonDisplay').innerText = 'Error fetching JSON data.';
+        });
+</script>
+
+<div id="jsonDisplay2"></div>
+
+<script>
+    // Fetch JSON data from the provided URL
+    //fetch('https://nickross4444.github.io/EarthyJuicy/ContentItems.json')
+    fetch('ContentItems.json')
+        .then(response => response.json())
+        .then(data => {
+            // Get the current day of the month
+            const currentDate = new Date();
+            const dayOfMonth = currentDate.getDate();
+
+            // Find the item with the corresponding index for the current day
+            const selectedItem = data.find(entry => entry.index === dayOfMonth);
+
+            // Check if an item was found
+            if (selectedItem) {
+                // Display the item's text
+                document.getElementById('jsonDisplay2').innerText = selectedItem.item;
+            } else {
+                // If no item was found, display a default message
+                document.getElementById('jsonDisplay2').innerText = 'No data available for the current day of the month.';
+            }
+        })
+        .catch(error => {
+            // Display an error message if fetching fails
+            console.error('Error fetching JSON:', error);
+            document.getElementById('jsonDisplay2').innerText = 'Error fetching JSON data.';
         });
 </script>
 </body>
