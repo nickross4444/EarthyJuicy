@@ -70,8 +70,8 @@
         .then(response => response.json())
         .then(data => {
             // Get the current day of the month
-            const currentDate = new Date();
-            const dayOfMonth = currentDate.getDate();
+            //const currentDate = new Date();
+            //const dayOfMonth = currentDate.getDate();
             
             // Reference date
             const referenceDate = new Date('2023-12-20');
@@ -84,7 +84,8 @@
             // Find the item with the corresponding index for the current day
             const selectedItem = data.find(entry => entry.index === daysDifference);
 
-            const backgroundIndex = dayOfMonth % backgroundUrls.length;
+            //const backgroundIndex = dayOfMonth % backgroundUrls.length;
+            const backgroundIndex = daysDifference % backgroundUrls.length;
             // Check if an item was found
             if (selectedItem) {
                 // Display the item's text
