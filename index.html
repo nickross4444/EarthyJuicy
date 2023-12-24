@@ -32,7 +32,8 @@
             color: #ff69b4; /* Set the text color to pink */
             text-align: center; /* Center-align the text */
             position: absolute;
-            top: 20%;
+            top: 30%;
+            left: 40%;
             width: 100%;
         }
 </style>
@@ -71,9 +72,17 @@
             // Get the current day of the month
             const currentDate = new Date();
             const dayOfMonth = currentDate.getDate();
+            
+            // Reference date
+            const referenceDate = new Date('2023-12-20');
+
+            // Calculate the difference in days between the current date and the reference date
+            const currentDate = new Date();
+            const daysDifference = Math.floor((currentDate - referenceDate) / (1000 * 60 * 60 * 24));
+
 
             // Find the item with the corresponding index for the current day
-            const selectedItem = data.find(entry => entry.index === dayOfMonth);
+            const selectedItem = data.find(entry => entry.index === daysDifference);
 
             const backgroundIndex = dayOfMonth % backgroundUrls.length;
             // Check if an item was found
