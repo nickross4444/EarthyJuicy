@@ -87,7 +87,7 @@
             const selectedItem = data.find(entry => entry.index === daysDifference);
 
             //const backgroundIndex = dayOfMonth % backgroundUrls.length;
-            const backgroundIndex = daysDifference % backgroundUrls.length;
+            const backgroundIndex = (daysDifference - 1) % backgroundUrls.length;
             // Check if an item was found
             if (selectedItem) {
                 // Display the item's text
